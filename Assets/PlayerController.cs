@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     public int health = 5;
     public Text scoreText;
+    public Text healthText;
 
     // triggered for interactables
     void OnTriggerEnter(Collider other)
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         {
             health--;
             Debug.Log("Health: " + health);
+            SetHealthText();
         }
 
         if (other.tag == "Goal")
@@ -76,5 +78,10 @@ public class PlayerController : MonoBehaviour
     void SetScoreText()
     {
         scoreText.text = "Score: " + score.ToString();
+    }
+
+    void SetHealthText()
+    {
+        healthText.text = "Health: " + health.ToString();
     }
 }
