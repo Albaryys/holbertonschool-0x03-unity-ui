@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "Goal")
         {
-            Debug.Log("You win!");
             winLoseBG.gameObject.SetActive(true);
             winLoseText.color = Color.black;
             winLoseBG.color = Color.green;
