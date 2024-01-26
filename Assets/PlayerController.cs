@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Pickup")
         {
             score++;
-            Debug.Log("Score: " + score);
             Destroy(other.gameObject);
             SetScoreText();
         }
@@ -29,7 +28,6 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Trap")
         {
             health--;
-            Debug.Log("Health: " + health);
             SetHealthText();
         }
 
@@ -40,6 +38,7 @@ public class PlayerController : MonoBehaviour
             winLoseText.color = Color.black;
             winLoseBG.color = Color.green;
             winLoseText.text = "You win!";
+            StartCoroutine(LoadScene(3));
         }
 
         if (other.tag == "Teleporter")
@@ -74,10 +73,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(3);
+        }
+
         if (health == 0)
         {
-            Debug.Log("Game Over!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            winLoseBG.gameObject.SetActive(true);
+            winLoseText.color = Color.white;
+            winLoseBG.color = Color.red;
+            winLoseText.text = "Game Over!";
+            StartCoroutine(LoadScene(3));
         }
     }
 
@@ -89,5 +96,11 @@ public class PlayerController : MonoBehaviour
     void SetHealthText()
     {
         healthText.text = "Health: " + health.ToString();
+    }
+
+    IEnumerator LoadScene(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(0);
     }
 }
