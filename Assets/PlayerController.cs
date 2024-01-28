@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(0);
         }
 
         if (health == 0)
