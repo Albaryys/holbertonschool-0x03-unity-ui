@@ -7,7 +7,6 @@ TagManager:
   - Pickup
   - Trap
   - Goal
-  - Teleporter
   layers:
   - Default
   - TransparentFX
